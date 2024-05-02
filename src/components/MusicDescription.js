@@ -74,7 +74,7 @@ function MusicDescription() {
                         <div className='rounded-lg cursor-pointer w-[256px] h-[256px] bg-black' />
                         <div className='flex flex-row'>
                             <div className='flex flex-col '>
-                                <span className='font-DM text-white font-bold line-clamp-1 text-[32px] cursor-pointer hover:underline'>...</span>
+                                <span className='font-DM text-white font-bold line-clamp-1 text-[32px] cursor-pointer hover:underline'></span>
                                 <span className='font-DM text-whitespt text-[16px] line-clamp-1 cursor-pointer hover:text-white hover:underline' >...</span>
                             </div>
                         </div>
