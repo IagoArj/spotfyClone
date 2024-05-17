@@ -27,7 +27,7 @@ function Login() {
 function redirectSpotfy() {
 
     let clientID = '07147cab94cb4f1e931c4ddd0f78789b';
-    let scopes = 'user-read-email user-read-recently-played user-read-private user-read-currently-playing playlist-modify-public playlist-modify-private playlist-read-private';
+    let scopes = 'user-read-email user-read-recently-played user-read-private user-top-read user-read-currently-playing playlist-modify-public playlist-modify-private playlist-read-private';
     let redirectURI = 'http://localhost:3000/callback';
     
     
