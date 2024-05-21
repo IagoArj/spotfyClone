@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function MusicDescription() {
-    let params = JSON.parse(localStorage.getItem("userKeys")).data
+    let params = JSON.parse(localStorage.getItem("userKeys")).data;
     const acessToken = params.access_token;
-    const [currentlyPlaying, setCurrentlyPlaying] = useState()
-    const [artistTopMusic, setArtistTopMusic] = useState([])
+    const [currentlyPlaying, setCurrentlyPlaying] = useState();
+    const [artistTopMusic, setArtistTopMusic] = useState([]);
 
+    let currentlyId ;
 
 
 
@@ -21,8 +22,21 @@ function MusicDescription() {
                     }
                 })
                 if(response.data.currently_playing_type == "track"){
+                    
                     setCurrentlyPlaying(response.data)
-                    topArtistsTracks(response.data.item.artists[0].id);
+                    if(currentlyId==response.data.item.artists[0].id){
+                        console.log("IGUAL")
+                        console.log(response.data)
+                        localStorage.setItem("duration_ms",JSON.stringify(response.data.item.duration_ms))
+                        localStorage.setItem("progress_ms",JSON.stringify(response.data.progress_ms))
+                        
+                    }else{
+                        topArtistsTracks(response.data.item.artists[0].id);
+                        currentlyId = response.data.item.artists[0].id;
+                        console.log("DIFERENTE")
+                    }
+                        
+                    
                 }
                 
             } catch (err) {
@@ -48,12 +62,12 @@ function MusicDescription() {
 
         }
 
-
+        getCurrentlyPlaying();
         setInterval(function(){ 
             getCurrentlyPlaying();   
-        }, 1000);
+        }, 10000);
 
-        getCurrentlyPlaying();
+        
         
 
     }, [])
