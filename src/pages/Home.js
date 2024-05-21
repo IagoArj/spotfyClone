@@ -32,17 +32,17 @@ function Home() {
 
     return (
         <div className='bg-black flex  flex-col h-screen w-screen overflow-hidden'>
-            <div className='flex flex-row jus'>
+            <div className='flex flex-row '>
                 <SideMenu />
-                <div className='bg-base rounded-lg flex w-fit h-auto mt-2 mr-3'>
+                <div className='bg-base rounded-lg flex   h-auto mt-2 mr-3'>
                     <div>
-                        <div className='flex flex-wrap '>
-                            {topArtists?.slice(0,5).map(artist => {
+                        <div className='flex flex-nowrap '>
+                            {topArtists?.slice(0,6).map(artist => {
                                 return (<MenuMusicCard artistName={artist.name} image={artist.images[0].url} />)
                             })}
                         </div></div>
                 </div>
-                <MusicDescription />
+                <MusicDescription  />
             </div>
         </div>
 

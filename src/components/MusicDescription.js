@@ -49,7 +49,9 @@ function MusicDescription() {
         }
 
 
-
+        setInterval(function(){ 
+            getCurrentlyPlaying();   
+        }, 1000);
 
         getCurrentlyPlaying();
         
@@ -57,7 +59,7 @@ function MusicDescription() {
     }, [])
 
     return (
-        <div className='bg-base rounded-lg w-[16vw] h-auto mt-2 mr-3 overflow-auto'>
+        <div className='bg-base rounded-lg flex flex-col justify-self-end min-w-64 w-[16vw] h-auto mt-2 mr-3 overflow-auto'>
             <div className='flex flex-col px-3 pt-4 '>
                 {currentlyPlaying ? (
                     <div>
