@@ -6,10 +6,8 @@ function MusicDescription() {
     const acessToken = params.access_token;
     const [currentlyPlaying, setCurrentlyPlaying] = useState();
     const [artistTopMusic, setArtistTopMusic] = useState([]);
-
-    let currentlyId ;
-
-
+    const [durationMusic, setDurationMusic] = useState();
+    const [progressMs, setProgressMusic] = useState();
 
     useEffect(() => {
         async function getCurrentlyPlaying() {
@@ -21,24 +19,16 @@ function MusicDescription() {
                         Authorization: 'Bearer ' + acessToken
                     }
                 })
-                if(response.data.currently_playing_type == "track"){
-                    
+                if (response.data.currently_playing_type == "track") {
                     setCurrentlyPlaying(response.data)
-                    if(currentlyId==response.data.item.artists[0].id){
-                        console.log("IGUAL")
-                        console.log(response.data)
-                        localStorage.setItem("duration_ms",JSON.stringify(response.data.item.duration_ms))
-                        localStorage.setItem("progress_ms",JSON.stringify(response.data.progress_ms))
-                        
-                    }else{
-                        topArtistsTracks(response.data.item.artists[0].id);
-                        currentlyId = response.data.item.artists[0].id;
-                        console.log("DIFERENTE")
-                    }
-                        
-                    
+                    setDurationMusic(response.data.item.duration_ms)
+                    setProgressMusic(response.data.progress_ms)
+                    localStorage.setItem("duration_ms", JSON.stringify(response.data.item.duration_ms))
+                    localStorage.setItem("progress_ms", JSON.stringify(response.data.progress_ms))
+                    topArtistsTracks(response.data.item.artists[0].id);
+
                 }
-                
+
             } catch (err) {
                 console.log(err)
             }
@@ -63,12 +53,15 @@ function MusicDescription() {
         }
 
         getCurrentlyPlaying();
-        setInterval(function(){ 
-            getCurrentlyPlaying();   
-        }, 10000);
+        
+        setInterval(function () {
+            getCurrentlyPlaying();
+        }, 25000);
 
-        
-        
+
+
+
+
 
     }, [])
 
@@ -100,7 +93,7 @@ function MusicDescription() {
             <div className=' px-3 mt-4 font-DM text-white font-bold text-[24px] cursor-default'>Mais tocadas</div>
             <nav className='px-2 py-3 overflow-auto h-72  scrollbar-thin scrollbar-thumb-[#212121] hover:scrollbar-thumb-[#3d3d3d] scrollbar-track-base mt-3'>
                 <ul className='cursor-pointer'>
-                    {artistTopMusic?.map( music => {
+                    {artistTopMusic?.map(music => {
                         return (
                             <li className="py-4 px-3  rounded-lg flex  hover:bg-base-high">
                                 <img className='w-14 h-14 bg-white rounded-lg mr-3' src={music.album.images[0].url} />

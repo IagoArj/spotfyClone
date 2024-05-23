@@ -17,11 +17,6 @@ function Home() {
                     <div className='flex flex-col h-[75vh] scrollbar-thin scrollbar-thumb-[#212121] hover:scrollbar-thumb-[#3d3d3d] scrollbar-track-base overflow-auto'>
                         <RecommendationList />
                         <RecommendationList />
-                        <RecommendationList />
-                        <RecommendationList />
-                        <RecommendationList />
-                        <RecommendationList />
-                        <RecommendationList />
                     </div>
                 </div>
                 <MusicDescription />
